@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="approvalWorkflow">
-
+<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="exercise8">
 
 	<start-state name="start-state1">
 		<transition to="metadata_created"></transition>
 	</start-state>
-
 
 	<task-node name="creator">
 		<transition to="reviewer" name="reviewer"></transition>
@@ -40,8 +38,6 @@
 		<transition to="reviewer"></transition>
 	</node>
 
-
 	<end-state name="end-state1"></end-state>
-
 
 </process-definition>
