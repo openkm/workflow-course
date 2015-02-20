@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<root-container name="exercise9" width="1152" height="620">
+<root-container name="exercise7" width="1152" height="620">
   <node name="start-state1" x="266" y="23" width="132" height="36">
     <edge>
       <label x="5" y="-10"/>
