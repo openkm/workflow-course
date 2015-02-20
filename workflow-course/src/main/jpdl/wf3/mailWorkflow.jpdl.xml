@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="mailWorkflow">
+
+
+	<start-state name="start-state1">
+		<transition to="mail-node1"></transition>
+		<transition to="node1" name="to node1"></transition>
+	</start-state>
+
+
+	<mail-node name="mail-node1" to="jlltella@gmail.com">
+		<subject>
+			test de mail
+		</subject>
+		<text>
+			this is a mail test
+		</text>
+		<transition to="end-state1"></transition>
+	</mail-node>
+
+	<node name="node1">
+		<action class="com.openkm.workflow.action.MailAction"></action>
+		<transition to="end-state1"></transition>
+	</node>
+
+
+	<end-state name="end-state1"></end-state>
+
+
+</process-definition>

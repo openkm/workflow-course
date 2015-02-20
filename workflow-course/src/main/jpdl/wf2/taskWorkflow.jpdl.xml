@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="taskWorkflow">
+
+
+	<swimlane name="initiator"></swimlane>
+
+	<swimlane name="swimlane1">
+		<assignment pooled-actors="okmAdmin, josep"></assignment>
+	</swimlane>
+
+
+	<start-state name="start-state1">
+		<task swimlane="initiator"></task>
+		<transition to="task-node1"></transition>
+	</start-state>
+
+
+	<task-node name="task-node1">
+		<task name="submit" swimlane="swimlane1"></task>
+		<transition to="task-node2"></transition>
+	</task-node>
+
+	<task-node name="task-node2">
+		<task swimlane="swimlane1" name="submit"></task>
+		<transition to="end-state1"></transition>
+	</task-node>
+
+
+	<end-state name="end-state1"></end-state>
+
+
+</process-definition>
