@@ -9,7 +9,7 @@
 
 
 	<task-node name="task-node1">
-		<task name="task">
+		<task name="task1">
 			<assignment actor-id="okmAdmin"></assignment>
 		</task>
 		<transition to="task-node2"></transition>
@@ -17,7 +17,7 @@
 
 	<task-node name="task-node2">
 		<task name="task2">
-			<assignment class="com.openkm.workflow.exercise.exercise9.ActorAssigment"></assignment>
+			<assignment class="com.openkm.workflow.exercise7.ActorAssigment"></assignment>
 		</task>
 		<transition to="end-state1"></transition>
 	</task-node>
