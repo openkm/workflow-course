@@ -10,24 +10,24 @@
 	</swimlane>
 
 
-	<start-state name="start-state1">
+	<start-state name="start-state">
 		<task swimlane="initiator"></task>
-		<transition to="task-node1"></transition>
+		<transition to="task-node-1"></transition>
 	</start-state>
 
 
-	<task-node name="task-node1">
+	<task-node name="task-node-1">
 		<task name="submit" swimlane="swimlane1"></task>
-		<transition to="task-node2"></transition>
+		<transition to="task-node-2"></transition>
 	</task-node>
 
-	<task-node name="task-node2">
+	<task-node name="task-node-2">
 		<task swimlane="swimlane1" name="submit"></task>
-		<transition to="end-state1"></transition>
+		<transition to="end-state"></transition>
 	</task-node>
 
 
-	<end-state name="end-state1"></end-state>
+	<end-state name="end-state"></end-state>
 
 
 </process-definition>

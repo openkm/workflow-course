@@ -6,20 +6,20 @@
 	<swimlane name="initiator"></swimlane>
 
 
-	<start-state name="start-state1">
+	<start-state name="start-state">
 		<task swimlane="initiator"></task>
-		<transition to="decision1"></transition>
+		<transition to="decision"></transition>
 	</start-state>
 
 
-	<decision name="decision1">
+	<decision name="decision">
 		<handler class="com.openkm.workflow.decision.InvoiceDecision"></handler>
-		<transition to="reviser" name="review"></transition>
+		<transition to="revisor" name="review"></transition>
 		<transition to="approver" name="approve"></transition>
 	</decision>
 
-	<task-node name="reviser">
-		<task name="reviser">
+	<task-node name="revisor">
+		<task name="revisor">
 			<assignment actor-id="reviser"></assignment>
 		</task>
 		<transition to="approver" name="reviewed"></transition>
@@ -31,23 +31,23 @@
 		<task name="approver">
 			<assignment actor-id="approver"></assignment>
 		</task>
-		<transition to="reviser" name="review"></transition>
-		<transition to="end-state1" name="aproved"></transition>
+		<transition to="revisor" name="review"></transition>
+		<transition to="end-state" name="aproved"></transition>
 		<transition to="cancel" name="cancel"></transition>
 	</task-node>
 
 	<node name="cancel">
 		<action class="com.openkm.workflow.action.InvoiceCancelationAction"></action>
-		<transition to="end-state1"></transition>
+		<transition to="end-state"></transition>
 	</node>
 
 	<task-node name="user">
 		<task name="user" swimlane="initiator"></task>
-		<transition to="reviser" name="review"></transition>
+		<transition to="revisor" name="review"></transition>
 	</task-node>
 
 
-	<end-state name="end-state1"></end-state>
+	<end-state name="end-state"></end-state>
 
 
 </process-definition>
