@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="invoiceWorkflow" width="420" height="419">
+  <node name="start-state1" x="267" y="14" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="decision1" x="266" y="84" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="reviser" x="173" y="166" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-139" h1="-2" w2="1" h2="80"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-99" h1="58" w2="-1" h2="-67"/>
+    </edge>
+  </node>
+  <node name="approver" x="275" y="245" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-102" h1="-3" w2="0" h2="76"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-1" h1="94" w2="100" h2="-43"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-98" h1="45" w2="102" h2="-1"/>
+    </edge>
+  </node>
+  <node name="end-state1" x="174" y="382" width="132" height="36"/>
+  <node name="cancel" x="75" y="291" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="7" h1="59" w2="-92" h2="-32"/>
+    </edge>
+  </node>
+  <node name="user" x="33" y="84" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="139" h1="1" w2="-1" h2="-81"/>
+    </edge>
+  </node>
+  <deployment graphicalInfoFile="/workflows/src/main/jpdl/wf4/.invoiceWorkflow.gpd.xml" imageFile="/workflows/src/main/jpdl/wf4/invoiceWorkflow.jpg" serverName="localhost" serverPort="8080" serverDeployer="/gpd-deployer/upload">
+    <classesAndResources>
+      <element type="java" value="/workflows/src/main/java/com/openkm/workflow/action/InvoiceCancelationAction.java"/>
+      <element type="java" value="/workflows/src/main/java/com/openkm/workflow/decision/InvoiceDecision.java"/>
+    </classesAndResources>
+    <additionalFiles>
+      <element value="/workflows/src/main/jpdl/wf4/forms.xml"/>
+    </additionalFiles>
+  </deployment>
+</root-container>

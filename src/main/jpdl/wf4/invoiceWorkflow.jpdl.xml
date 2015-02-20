@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="invoiceWorkflow">
+
+
+	<swimlane name="initiator"></swimlane>
+
+
+	<start-state name="start-state1">
+		<task swimlane="initiator"></task>
+		<transition to="decision1"></transition>
+	</start-state>
+
+
+	<decision name="decision1">
+		<handler class="com.openkm.workflow.decision.InvoiceDecision"></handler>
+		<transition to="reviser" name="review"></transition>
+		<transition to="approver" name="approve"></transition>
+	</decision>
+
+	<task-node name="reviser">
+		<task name="reviser">
+			<assignment actor-id="reviser"></assignment>
+		</task>
+		<transition to="approver" name="reviewed"></transition>
+		<transition to="user" name="userReview"></transition>
+		<transition to="cancel" name="cancel"></transition>
+	</task-node>
+
+	<task-node name="approver">
+		<task name="approver">
+			<assignment actor-id="approver"></assignment>
+		</task>
+		<transition to="reviser" name="review"></transition>
+		<transition to="end-state1" name="aproved"></transition>
+		<transition to="cancel" name="cancel"></transition>
+	</task-node>
+
+	<node name="cancel">
+		<action class="com.openkm.workflow.action.InvoiceCancelationAction"></action>
+		<transition to="end-state1"></transition>
+	</node>
+
+	<task-node name="user">
+		<task name="user" swimlane="initiator"></task>
+		<transition to="reviser" name="review"></transition>
+	</task-node>
+
+
+	<end-state name="end-state1"></end-state>
+
+
+</process-definition>

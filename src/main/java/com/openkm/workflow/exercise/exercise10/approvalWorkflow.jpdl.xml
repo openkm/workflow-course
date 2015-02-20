@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="approvalWorkflow">
+
+
+	<start-state name="start-state1">
+		<transition to="metadata_created"></transition>
+	</start-state>
+
+
+	<task-node name="creator">
+		<transition to="reviewer" name="reviewer"></transition>
+		<transition to="cancelation" name="cancel"></transition>
+	</task-node>
+
+	<task-node name="reviewer">
+		<transition to="creator" name="reviewCreator"></transition>
+		<transition to="metadata_reviewed" name="accept"></transition>
+		<transition to="cancelation" name="cancel"></transition>
+	</task-node>
+
+	<task-node name="approver">
+		<transition to="metadata_accepted" name="accept"></transition>
+		<transition to="cancelation" name="cancel"></transition>
+	</task-node>
+
+	<node name="cancelation">
+		<transition to="end-state1"></transition>
+	</node>
+
+	<node name="metadata_accepted">
+		<transition to="end-state1"></transition>
+	</node>
+
+	<node name="metadata_reviewed">
+		<transition to="approver"></transition>
+	</node>
+
+	<node name="metadata_created">
+		<transition to="reviewer"></transition>
+	</node>
+
+
+	<end-state name="end-state1"></end-state>
+
+
+</process-definition>

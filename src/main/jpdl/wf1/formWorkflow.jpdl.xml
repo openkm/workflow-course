@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="formWorkflow">
+
+
+	<start-state name="start-state1">
+		<transition to="task-node1"></transition>
+	</start-state>
+
+
+	<task-node name="task-node1">
+		<task name="get-data">
+			<assignment actor-id="okmAdmin"></assignment>
+		</task>
+		<transition to="decision1"></transition>
+	</task-node>
+
+	<decision name="decision1">
+		<handler class="com.openkm.workflow.decision.Decision1"></handler>
+		<transition to="end-state1" name="trans1">
+			<action name="action1" class="com.openkm.workflow.action.Transaction1Action"></action>
+		</transition>
+		<transition to="end-state2" name="trans2">
+			<action name="action2" class="com.openkm.workflow.action.Transaction2Action"></action>
+		</transition>
+	</decision>
+
+
+	<end-state name="end-state1"></end-state>
+
+	<end-state name="end-state2"></end-state>
+
+
+	<task name="get data"></task>
+
+
+</process-definition>
