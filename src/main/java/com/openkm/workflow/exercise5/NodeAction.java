@@ -21,9 +21,9 @@ public class NodeAction implements ActionHandler {
 		
 		value = value * 3;
 		Input modified = new Input();
-		modified.setName("modified");
+		modified.setName("modified"); // Should be equal to instance variable name
 		modified.setLabel("modified");
 		modified.setValue(String.valueOf(value * 3));
-		executionContext.getContextInstance().setVariable("modified", modified);
+		executionContext.getContextInstance().setVariable("modified", modified); // Should be equal to input name
 	}
 }

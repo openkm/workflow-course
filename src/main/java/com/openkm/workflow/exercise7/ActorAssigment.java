@@ -7,7 +7,6 @@ import org.jbpm.taskmgmt.exe.Assignable;
 import com.openkm.bean.form.Input;
 
 public class ActorAssigment implements AssignmentHandler {
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Override
