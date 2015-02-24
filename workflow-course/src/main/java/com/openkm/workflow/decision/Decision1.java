@@ -14,6 +14,7 @@ public class Decision1 implements DecisionHandler {
 		
 		if (number != null) {
 			int value = Integer.valueOf(number.getValue());
+			
 			if (value > 20) {
 				return "trans1";
 			} else {
