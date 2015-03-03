@@ -9,8 +9,9 @@ import org.jbpm.graph.exe.ExecutionContext;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.taskmgmt.def.Task;
 import org.jbpm.taskmgmt.exe.TaskInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.openkm.core.DatabaseException;
 import com.openkm.dao.DatabaseMetadataDAO;
 import com.openkm.dao.bean.DatabaseMetadataValue;
 import com.openkm.frontend.client.util.metadata.DatabaseMetadataMap;
@@ -36,6 +37,8 @@ import com.openkm.util.ISO8601;
  * @author pavila
  */
 public class WorkflowLogger {
+	private static Logger log = LoggerFactory.getLogger(WorkflowLogger.class);
+	
 	/**
 	 * Log messages to database.
 	 * 
@@ -46,7 +49,7 @@ public class WorkflowLogger {
 	 * @throws Exception If any error occurs.
 	 */
 	@SuppressWarnings("rawtypes")
-	public static void log(Class clazz, ExecutionContext ctx, String msg, Object... args) throws DatabaseException {
+	public static void log(Class clazz, ExecutionContext ctx, String msg, Object... args) {
 		log(clazz.getCanonicalName(), ctx, msg, args);
 	}
 	
@@ -59,7 +62,7 @@ public class WorkflowLogger {
 	 * @param args Optional message arguments.
 	 * @throws Exception If any error occurs.
 	 */
-	public static void log(String clazz, ExecutionContext ctx, String msg, Object... args) throws DatabaseException {
+	public static void log(String clazz, ExecutionContext ctx, String msg, Object... args) {
 		try {
 			ProcessDefinition procDef = ctx.getProcessDefinition();
 			ProcessInstance procIns = ctx.getProcessInstance();
@@ -95,7 +98,7 @@ public class WorkflowLogger {
 			DatabaseMetadataValue dmv = DatabaseMetadataUtils.getDatabaseMetadataValueByMap(logger);
 			DatabaseMetadataDAO.createValue(dmv);
 		} catch (Exception e) {
-			throw new DatabaseException(e.getMessage(), e);
+			log.error(e.getMessage(), e);
 		}
 	}
 }
