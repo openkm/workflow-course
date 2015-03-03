@@ -10,6 +10,7 @@ import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.taskmgmt.def.Task;
 import org.jbpm.taskmgmt.exe.TaskInstance;
 
+import com.openkm.core.DatabaseException;
 import com.openkm.dao.DatabaseMetadataDAO;
 import com.openkm.dao.bean.DatabaseMetadataValue;
 import com.openkm.frontend.client.util.metadata.DatabaseMetadataMap;
@@ -45,7 +46,7 @@ public class WorkflowLogger {
 	 * @throws Exception If any error occurs.
 	 */
 	@SuppressWarnings("rawtypes")
-	public static void log(Class clazz, ExecutionContext ctx, String msg, Object... args) throws Exception {
+	public static void log(Class clazz, ExecutionContext ctx, String msg, Object... args) throws DatabaseException {
 		log(clazz.getCanonicalName(), ctx, msg, args);
 	}
 	
@@ -58,39 +59,43 @@ public class WorkflowLogger {
 	 * @param args Optional message arguments.
 	 * @throws Exception If any error occurs.
 	 */
-	public static void log(String clazz, ExecutionContext ctx, String msg, Object... args) throws Exception {
-		ProcessDefinition procDef = ctx.getProcessDefinition();
-		ProcessInstance procIns = ctx.getProcessInstance();
-		Task task = ctx.getTask();
-		TaskInstance taskIns = ctx.getTaskInstance();
-		
-		// A very simple implementation of format
-		for (int i=0; i < args.length; i++) {
-			String delimiter = "{" + i + "}";
+	public static void log(String clazz, ExecutionContext ctx, String msg, Object... args) throws DatabaseException {
+		try {
+			ProcessDefinition procDef = ctx.getProcessDefinition();
+			ProcessInstance procIns = ctx.getProcessInstance();
+			Task task = ctx.getTask();
+			TaskInstance taskIns = ctx.getTaskInstance();
 			
-			while (msg.contains(delimiter)) {
-				msg = msg.replace(delimiter, String.valueOf(args[i]));
+			// A very simple implementation of format
+			for (int i=0; i < args.length; i++) {
+				String delimiter = "{" + i + "}";
+				
+				while (msg.contains(delimiter)) {
+					msg = msg.replace(delimiter, String.valueOf(args[i]));
+				}
 			}
+			
+			Map<String, String> logger = new HashMap<String, String>();
+			logger.put(DatabaseMetadataMap.MV_NAME_TABLE, "logger");
+			logger.put("log_date", ISO8601.formatBasic(Calendar.getInstance()));
+			logger.put("log_class", clazz);
+			logger.put("log_proc_name", procDef.getName() + " v" + procDef.getVersion());
+			logger.put("log_proc_def", Long.toString(procDef.getId()));
+			logger.put("log_proc_ins", Long.toString(procIns.getId()));
+			
+			if (task != null) {
+				logger.put("log_task_name", task.getName());
+				logger.put("log_task_def", Long.toString(task.getId()));
+				logger.put("log_task_ins", Long.toString(taskIns.getId()));
+			}
+			
+			logger.put("log_node", (String) ctx.getVariable("uuid"));
+			logger.put("log_msg", msg);
+			
+			DatabaseMetadataValue dmv = DatabaseMetadataUtils.getDatabaseMetadataValueByMap(logger);
+			DatabaseMetadataDAO.createValue(dmv);
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage(), e);
 		}
-		
-		Map<String, String> logger = new HashMap<String, String>();
-		logger.put(DatabaseMetadataMap.MV_NAME_TABLE, "logger");
-		logger.put("log_date", ISO8601.formatBasic(Calendar.getInstance()));
-		logger.put("log_class", clazz);
-		logger.put("log_proc_name", procDef.getName() + " v" + procDef.getVersion());
-		logger.put("log_proc_def", Long.toString(procDef.getId()));
-		logger.put("log_proc_ins", Long.toString(procIns.getId()));
-		
-		if (task != null) {
-			logger.put("log_task_name", task.getName());
-			logger.put("log_task_def", Long.toString(task.getId()));
-			logger.put("log_task_ins", Long.toString(taskIns.getId()));
-		}
-		
-		logger.put("log_node", (String) ctx.getVariable("uuid"));
-		logger.put("log_msg", msg);
-		
-		DatabaseMetadataValue dmv = DatabaseMetadataUtils.getDatabaseMetadataValueByMap(logger);
-		DatabaseMetadataDAO.createValue(dmv);
 	}
 }
