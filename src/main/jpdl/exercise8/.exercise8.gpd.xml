@@ -59,9 +59,9 @@
     </edge>
   </node>
   <node name="end-state" x="301" y="602" width="132" height="36"/>
-  <deployment graphicalInfoFile="/workflows/src/main/jpdl/exercise8/.exercise8.gpd.xml" imageFile="/workflows/src/main/jpdl/exercise8/exercise8.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
+  <deployment graphicalInfoFile="/workflow-course/src/main/jpdl/exercise8/.exercise8.gpd.xml" imageFile="/workflow-course/src/main/jpdl/exercise8/exercise8.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
     <additionalFiles>
-      <element value="/workflows/src/main/jpdl/exercise8/forms.xml"/>
+      <element value="/workflow-course/src/main/jpdl/exercise8/forms.xml"/>
     </additionalFiles>
   </deployment>
 </root-container>

@@ -17,9 +17,9 @@
     </edge>
   </node>
   <node name="end-state" x="188" y="230" width="132" height="36"/>
-  <deployment graphicalInfoFile="/workflows/src/main/jpdl/wf2/.taskWorkflow.gpd.xml" imageFile="/workflows/src/main/jpdl/wf2/taskWorkflow.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
+  <deployment graphicalInfoFile="/workflow-course/src/main/jpdl/wf2/.taskWorkflow.gpd.xml" imageFile="/workflow-course/src/main/jpdl/wf2/taskWorkflow.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
     <additionalFiles>
-      <element value="/workflows/src/main/jpdl/wf2/forms.xml"/>
+      <element value="/workflow-course/src/main/jpdl/wf2/forms.xml"/>
     </additionalFiles>
   </deployment>
 </root-container>

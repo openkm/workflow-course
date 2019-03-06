@@ -17,12 +17,12 @@
     </edge>
   </node>
   <node name="end-state1" x="254" y="322" width="132" height="36"/>
-  <deployment graphicalInfoFile="/workflows/src/main/jpdl/exercise5/.exercise5.gpd.xml" imageFile="/workflows/src/main/jpdl/exercise5/exercise5.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
+  <deployment graphicalInfoFile="/workflow-course/src/main/jpdl/exercise5/.exercise5.gpd.xml" imageFile="/workflow-course/src/main/jpdl/exercise5/exercise5.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
     <classesAndResources>
-      <element type="java" value="/workflows/src/main/java/com/openkm/workflow/exercise5/NodeAction.java"/>
+      <element type="java" value="/workflow-course/src/main/java/com/openkm/workflow/exercise5/NodeAction.java"/>
     </classesAndResources>
     <additionalFiles>
-      <element value="/workflows/src/main/jpdl/exercise5/forms.xml"/>
+      <element value="/workflow-course/src/main/jpdl/exercise5/forms.xml"/>
     </additionalFiles>
   </deployment>
 </root-container>

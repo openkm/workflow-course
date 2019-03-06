@@ -21,14 +21,14 @@
   </node>
   <node name="end-state-1" x="105" y="220" width="132" height="36"/>
   <node name="end-state-2" x="369" y="218" width="132" height="36"/>
-  <deployment graphicalInfoFile="/workflows/src/main/jpdl/wf1/.formWorkflow.gpd.xml" imageFile="/workflows/src/main/jpdl/wf1/formWorkflow.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
+  <deployment graphicalInfoFile="/workflow-course/src/main/jpdl/wf1/.formWorkflow.gpd.xml" imageFile="/workflow-course/src/main/jpdl/wf1/formWorkflow.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
     <classesAndResources>
-      <element type="java" value="/workflows/src/main/java/com/openkm/workflow/action/Transaction1Action.java"/>
-      <element type="java" value="/workflows/src/main/java/com/openkm/workflow/action/Transaction2Action.java"/>
-      <element type="java" value="/workflows/src/main/java/com/openkm/workflow/decision/Decision1.java"/>
+      <element type="java" value="/workflow-course/src/main/java/com/openkm/workflow/action/Transaction1Action.java"/>
+      <element type="java" value="/workflow-course/src/main/java/com/openkm/workflow/action/Transaction2Action.java"/>
+      <element type="java" value="/workflow-course/src/main/java/com/openkm/workflow/decision/Decision1.java"/>
     </classesAndResources>
     <additionalFiles>
-      <element value="/workflows/src/main/jpdl/wf1/forms.xml"/>
+      <element value="/workflow-course/src/main/jpdl/wf1/forms.xml"/>
     </additionalFiles>
   </deployment>
 </root-container>

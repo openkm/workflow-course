@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="JBPM/JBPM 3.3.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/OpenKM"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Tomcat"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
